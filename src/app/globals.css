@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.input-style {
+  @apply w-full bg-transparent border-b border-gray-600 p-2 focus:outline-none focus:border-yellow-500;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Makes it white */
+}
+
+/* Thin scrollbar styles */
+::-webkit-scrollbar {
+  width: 5px; /* Thin scrollbar */
+  height: 5px; /* Thin scrollbar for horizontal scroll */
+}
+
+::-webkit-scrollbar-track {
+  background: white; /* Darker track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #97a2b2; /* Gray thumb */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280; /* Lighter gray when hovered */
+  width: 10px; /* Thin scrollbar */
+}
