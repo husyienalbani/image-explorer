@@ -4,22 +4,23 @@ import { LocationData } from "../types";
 import { useMap } from "../context/MapProvider";
 import { LngLatBounds } from "maplibre-gl";
 
-
 const SearchLocation = () => {
-    const {map} = useMap();
+  const { map } = useMap();
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<LocationData[]>([]);
 
-
   const zoomToPolygon = (location: LocationData) => {
-    if(!map) return;
+    if (!map) return;
     if (!location.boundingbox) return;
-  
+
     const bounds = new LngLatBounds(
-      [parseFloat(location.boundingbox[2]), parseFloat(location.boundingbox[0])], // Southwest [lng, lat]
-      [parseFloat(location.boundingbox[3]), parseFloat(location.boundingbox[1])]  // Northeast [lng, lat]
+      [
+        parseFloat(location.boundingbox[2]),
+        parseFloat(location.boundingbox[0]),
+      ], // Southwest [lng, lat]
+      [parseFloat(location.boundingbox[3]), parseFloat(location.boundingbox[1])] // Northeast [lng, lat]
     );
-  
+
     map.fitBounds(bounds, {
       padding: 100, // Optional: add padding around the polygon
     });
@@ -31,7 +32,9 @@ const SearchLocation = () => {
       setSuggestions([]);
       return;
     }
-    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${query}&countrycodes=id`);
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${query}&countrycodes=id`
+    );
     const data = await res.json();
     setSuggestions(data);
   };
@@ -55,7 +58,7 @@ const SearchLocation = () => {
       {/* Input Pencarian */}
       <input
         type="text"
-        className="w-full bg-maincolor text-gray-300 placeholder-gray-500 border-b border-white focus:outline-none focus:border-yellow-500 px-2 py-2"
+        className="w-full bg-maincolor text-gray-300 placeholder-gray-500 border-b border-white focus:outline-none focus:border-greenmaincolor px-2 py-2"
         placeholder="Search"
         value={searchTerm}
         onChange={handleInputChange}

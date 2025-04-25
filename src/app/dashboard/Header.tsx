@@ -54,7 +54,7 @@ export default function Header() {
                     onClick={() => handleNavigate("/dashboard")}
                     className={`${
                       pathname === "/dashboard"
-                        ? "bg-gray-100 text-gray-900"
+                        ? "bg-greenmaincolor text-gray-900"
                         : "text-gray-700"
                     } flex items-center w-full px-4 py-2 text-sm hover:bg-gray-100`}
                   >
@@ -64,7 +64,7 @@ export default function Header() {
                     onClick={() => handleNavigate("/")}
                     className={`${
                       pathname === "/"
-                        ? "bg-gray-100 text-gray-900"
+                        ? "bg-greenmaincolor text-gray-900"
                         : "text-gray-700"
                     } flex items-center w-full px-4 py-2 text-sm hover:bg-gray-100`}
                   >
@@ -100,7 +100,7 @@ export default function Header() {
                 <div className="text-sm font-medium text-gray-300">
                   {session?.user?.name || "Guest"}
                 </div>
-                <ChevronDownIcon className="w-4 h-4 text-gray-300" />
+                <ChevronDownIcon className="w-4 h-4 text-gray-700" />
               </button>
 
               {/* User dropdown menu */}

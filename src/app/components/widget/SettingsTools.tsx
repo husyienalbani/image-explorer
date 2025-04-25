@@ -7,8 +7,11 @@ interface AOISettingsModalProps {
   onClose: () => void;
 }
 
-const SettingsTools: React.FC<AOISettingsModalProps> = ({ isOpen, onClose }) => {
-    const {setConfig} = useConfig();
+const SettingsTools: React.FC<AOISettingsModalProps> = ({
+  isOpen,
+  onClose,
+}) => {
+  const { setConfig } = useConfig();
   const [color, setColor] = useState("#ff0000");
   const [borderWidth, setBorderWidth] = useState(2);
 
@@ -25,32 +28,34 @@ const SettingsTools: React.FC<AOISettingsModalProps> = ({ isOpen, onClose }) => 
   const handleSave = () => {
     localStorage.setItem("aoiColor", color);
     localStorage.setItem("aoiBorderWidth", borderWidth.toString());
-    setConfig(prev => ({...prev, defaultAOIColor: color}));
+    setConfig((prev) => ({ ...prev, defaultAOIColor: color }));
     onClose();
   };
 
   return (
-    <Dialog 
-      open={isOpen} 
-      onClose={onClose} 
+    <Dialog
+      open={isOpen}
+      onClose={onClose}
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
     >
-      <DialogPanel 
+      <DialogPanel
         className="bg-maincolor p-6 rounded-md text-center text-white w-[90%] max-w-md"
-        onMouseDown={(e) => e.stopPropagation()} 
+        onMouseDown={(e) => e.stopPropagation()}
       >
-        <DialogTitle className="text-lg font-bold text-yellow-400">Settings</DialogTitle>
+        <DialogTitle className="text-lg font-bold text-greensecondarycolor">
+          Settings
+        </DialogTitle>
         <p className="text-sm my-2">Customize the appearance of your AOI.</p>
-        
+
         {/* Two-column layout */}
         <div className="grid grid-cols-2 gap-4 mt-4">
           {/* Left Column: Color Setting */}
           <div>
             <label className="block text-xs">AOI Color</label>
-            <input 
-              type="color" 
-              value={color} 
-              onChange={(e) => setColor(e.target.value)} 
+            <input
+              type="color"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
               className="w-full h-10 rounded-md  bg-white cursor-pointer input-style"
             />
           </div>
@@ -58,32 +63,36 @@ const SettingsTools: React.FC<AOISettingsModalProps> = ({ isOpen, onClose }) => 
           {/* Right Column: Border Width Setting */}
           <div>
             <label className="block text-xs">Border Width</label>
-            <input 
-              type="number" 
-              value={borderWidth} 
-              min={1} 
-              max={10} 
-              onChange={(e) => setBorderWidth(Number(e.target.value))} 
+            <input
+              type="number"
+              value={borderWidth}
+              min={1}
+              max={10}
+              onChange={(e) => setBorderWidth(Number(e.target.value))}
               className="w-full p-2 rounded-md text-white input-style"
             />
           </div>
         </div>
 
-
         {/* Preview Box */}
         <div className="mt-4 flex justify-center">
-          <div 
-            className="w-24 h-24 rounded-md" 
+          <div
+            className="w-24 h-24 rounded-md"
             style={{
-              backgroundColor: color, 
-              border: `${borderWidth}px solid white`
+              backgroundColor: color,
+              border: `${borderWidth}px solid white`,
             }}
           />
         </div>
 
         {/* Buttons */}
         <div className="flex justify-end mt-4 space-x-2">
-          <button onClick={handleSave} className="bg-yellow-600 px-3 py-1 text-white rounded-sm">Save</button>
+          <button
+            onClick={handleSave}
+            className="bg-greensecondarycolor px-3 py-1 text-white rounded-sm"
+          >
+            Save
+          </button>
         </div>
       </DialogPanel>
     </Dialog>

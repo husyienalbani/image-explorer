@@ -88,10 +88,12 @@ export default function Sidebar({ isMobile, menuOpen, onClose }: SidebarProps) {
               alt="Logo"
               width={50}
               height={50}
-              className="bg-maincolor"
+              className="bg-maincolor p-[10px]"
             />
 
-            <div className="text-gray-300">Ruang Bumi Explorer</div>
+            <div className="text-gray-300 font-bold text-sm uppercase tracking-widest">
+              Ruang Bumi Explorer
+            </div>
           </div>
 
           {/* Right section - Dashboard button (commented but included for reference) */}
